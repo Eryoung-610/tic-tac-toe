@@ -3,12 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hello Front-End</title>
+  <title>Tic-Tac-Toe</title>
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body>
-  <h1>Hello Front-End</h1>
+
+<!-- Have to use onload in order for first click to be an X -->
+<body onload = "init();">
+
+  <audio src = "spongebob.mp3" id = "test"></audio>
+
+  <!-- Title & Turn indicator -->
+  <h1>Tic Tac Toe</h1>
+  <h2 id = "turn">It is X's turn</h2>
+
+  <!-- Board/Grid. Utilizes onClick per td in order for X and O to occur -->
+    <table id = "table">
+
+      <!-- "this" grabs the current box -->
+      <tr>
+        <td id = "1"  onClick = "testFunction(this)"></td>
+        <td id = "2" class = "vertical" onClick = "selectedBox(this)"></td>
+        <td id = "3" onClick = "selectedBox(this)"></td>
+      </tr>
+      <tr>
+        <td id = "4" class = "horizontal" onClick = "selectedBox(this)"></td>
+        <td id = "5" class = "vertical horizontal" onClick = "selectedBox(this)"></td>
+        <td id = "6" class = "horizontal" onClick = "selectedBox(this)"></td>
+      </tr>
+      <tr>
+        <td id = "7" onClick = "selectedBox(this)"></td>
+        <td id = "8" class = "vertical" onClick = "selectedBox(this)"></td>
+        <td id = "9" onClick = "selectedBox(this)"></td>
+      </tr>
+    </table>
+
+    <!-- Winner div -->
+    <div id = "results">
+      
+    </div>
+
+    <!-- Restart Button -->
+    <button id = "restart" disabled onclick = "init()">Play Again</button>
+
+    <!-- Alright Pinhead! Your time is up! -->
+    <div id ="testButton">
+    <button id = "clickMe" onclick = "playSound()" type = "button">CLICK ME</button>
+    </div>
 
   <script type="text/javascript" src="js/app.js"></script>
+
+
 </body>
 </html>
