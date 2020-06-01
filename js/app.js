@@ -23,15 +23,15 @@ Functions needed
         -Fills specific box with an X or an O
         -If the symbol is an X already then it will be an O, if not O, then X.
         -This also serves as a way for alternating turns, instead of using a counter++ and if(counter % 2 == 0)...  
-    -checkBox
+    -fullBox
         -doc.getId(td id).innerText
-    -checkRow
+    -fullRow
         -need a boolean here to see if a row is filled
-        -call checkBox and if x y z are filled then return true
+        -call fullBox and if x y z are filled then return true
     -winCons
         -Utilize td id's to verify winning conditions in both horizontal,vertical, and diagonal possibilities.
         -Has to be an || because there's only 1 winner.
-        -Utilize checkRow to verify all possibilites.
+        -Utilize fullRow to verify all possibilites.
         If no winner, else turnUpdate("No winner")
 */
 
@@ -55,13 +55,13 @@ let x = document.createElement("IMG1");
 
 
 
-function testFunction(){
-    let x = document.createElement("IMG");
-    x.setAttribute("src", "/img/dirtyDan.jpg");
-    x.setAttribute("width", "150");
-    x.setAttribute("height", "150");
-    document.getElementById("1").appendChild(x);
-}
+// function testFunction(){
+//     let x = document.createElement("IMG");
+//     x.setAttribute("src", "/img/dirtyDan.jpg");
+//     x.setAttribute("width", "150");
+//     x.setAttribute("height", "150");
+//     document.getElementById("1").appendChild(x);
+// }
 
 function init() {
     clearBox();
@@ -109,13 +109,13 @@ function turnUpdate(update) {
 
 }
 
-function checkBox(boxNum){
+function fullBox(boxNum){
     return document.getElementById(boxNum).innerText;
 }
 
-function checkRow(x, y, z, filled) {
+function fullRow(x, y, z, filled) {
     var fill = false;
-    if (checkBox(x) == filled && checkBox(y) == filled && checkBox(z) == filled) {
+    if (fullBox(x) == filled && fullBox(y) == filled && fullBox(z) == filled) {
         fill = true;
     }
     return fill;
@@ -123,32 +123,33 @@ function checkRow(x, y, z, filled) {
 
 function winCons(filled){
     var winnerFound = false;
-    if (checkRow(1,2,3,filled) ||
-        checkRow(4,5,6,filled) || 
-        checkRow(7,8,9,filled) ||
-        checkRow(1,4,7,filled) ||
-        checkRow(2,5,8,filled) ||
-        checkRow(3,6,9,filled) ||
-        checkRow(1,5,9,filled) ||
-        checkRow(3,5,7,filled)) {
+    if (fullRow(1,2,3,filled) ||
+        fullRow(4,5,6,filled) || 
+        fullRow(7,8,9,filled) ||
+        fullRow(1,4,7,filled) ||
+        fullRow(2,5,8,filled) ||
+        fullRow(3,6,9,filled) ||
+        fullRow(1,5,9,filled) ||
+        fullRow(3,5,7,filled)) {
             winnerFound = true;    
         } else if (
-        checkRow(1,2,3,filled) &&
-        checkRow(4,5,6,filled) && 
-        checkRow(7,8,9,filled) &&
-        checkRow(1,4,7,filled) &&
-        checkRow(2,5,8,filled) &&
-        checkRow(3,6,9,filled) &&
-        checkRow(1,5,9,filled) &&
-        checkRow(3,5,7,filled)) {
-            console.log("TEST");
-            results.innerText = "No winner!"
+        fullRow(1,2,3,filled) && //Top row
+        fullRow(4,5,6,filled) && //Middle row
+        fullRow(7,8,9,filled) && //Bottom row
+        fullRow(1,4,7,filled) && //left col
+        fullRow(2,5,8,filled) && //mid col
+        fullRow(3,6,9,filled) && // right col
+        fullRow(1,5,9,filled) && //L->R diag
+        fullRow(3,5,7,filled)) { // R -> diag
+            results.innerText = "No winner!"      
         } else {
             winnerFound = false;
+            
         }
         return winnerFound;
 }
 
+//Very redundant
 function clearBox() {
     document.getElementById("1").innerText = "";
     document.getElementById("2").innerText = "";

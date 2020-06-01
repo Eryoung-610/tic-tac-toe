@@ -21,7 +21,7 @@
 
       <!-- "this" grabs the current box -->
       <tr>
-        <td id = "1"  onClick = "testFunction(this)"></td>
+        <td id = "1"  onClick = "selectedBox(this)"></td>
         <td id = "2" class = "vertical" onClick = "selectedBox(this)"></td>
         <td id = "3" onClick = "selectedBox(this)"></td>
       </tr>
@@ -43,7 +43,7 @@
     </div>
 
     <!-- Restart Button -->
-    <button id = "restart" disabled onclick = "init()">Play Again</button>
+    <button id = "restart" disabled onclick = init();>Play Again</button>
 
     <!-- Alright Pinhead! Your time is up! -->
     <div id ="testButton">
