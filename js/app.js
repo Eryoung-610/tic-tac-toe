@@ -35,10 +35,6 @@ Functions needed
         If no winner, else turnUpdate("No winner")
 */
 
-// document.getElementById("5").innerText = "TEST";
-
-
-
 //Message box Ref
 const updateBox = document.getElementById("turn");
 
@@ -52,7 +48,6 @@ let restartButton = document.getElementById("restart");
 
 let x = document.createElement("IMG1");
 // x.src = "/img/dirtyDan.jpg";
-
 
 
 // function testFunction(){
@@ -92,6 +87,7 @@ function choice() {
         document.win = document.symbol;
         restartButton.disabled = false; 
     }
+
     if (document.symbol == "X") {
         document.symbol = "O";
     } else {
@@ -141,10 +137,9 @@ function winCons(filled){
         fullRow(3,6,9,filled) && // right col
         fullRow(1,5,9,filled) && //L->R diag
         fullRow(3,5,7,filled)) { // R -> diag
-            results.innerText = "No winner!"      
+            results.innerText = "No winner!";
         } else {
             winnerFound = false;
-            
         }
         return winnerFound;
 }
